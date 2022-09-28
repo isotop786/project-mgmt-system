@@ -10,10 +10,7 @@
 		<div class="row">
 			<div class="col-md-3"></div>
 			<div class="col-md-6 p-3 card-body">
-			<div class="d-flex justify-content-around">			
-				<a class="btn btn-primary mb-3" href="/projects/new/">Add new</a>
-				<a href="/employees/">Employees List</a>
-			</div>
+			
 				<table class="table table-striped">
 					<thead>
 						<tr>
@@ -26,6 +23,25 @@
 						<tr th:each="project: ${projects}">
 							<td th:text="${project.name}"/>
 							<td	th:text="${project.stage}"/>
+						</tr>
+					</tbody>
+
+
+				</table>
+				
+				<h3 class="text-center">Current Employee List</h3>
+				<table class="table table-striped">
+					<thead>
+						<tr>
+							<th>Employee Full Name</th>
+							<th>Email Address</th>
+						</tr>
+					</thead>
+
+					<tbody>
+						<tr th:each="emp: ${employees}">
+							<td th:text="${emp.firstName}+' '+${emp.lastName}"/>
+							<td	th:text="${emp.email}"/>
 						</tr>
 					</tbody>
 

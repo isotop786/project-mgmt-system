@@ -1,19 +1,48 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head>
+<head th:replace="layouts :: header">
 <meta charset="ISO-8859-1">
 <title>Insert title here</title>
 </head>
 <body>
-	<table>
+<nav th:replace="layouts :: nav"></nav>
+
+<div class="container mt-4">
+	<div class="row justify-content-center">
+			<h3>Project List</h3>
+	</div>
+
+	
+	<div class="row">
+		<div class="col-md-3">
+		</div>
+		
+		<div class="col-md-6">
+		<div class="my-3">
+			<a class="btn btn-sm btn-primary" href="/projects/new">Add New Project</a>
+		</div>
+			<table class="table table-striped">
 		<tr>
 			<td>Project Name</td>
-			<td>Project Description</td>
 			<td>Project Stage</td>
+			<td>Project Description</td>
+		</tr>	
+		
+		<tr th:each="project : ${projects}">
+			<td th:text="${project.name}"/>
+			<td th:text="${project.stage}"/>
+			<td th:text="${project.description}"/>
 		</tr>
-		
-	
-		
+			
 	</table>
+		
+		</div>
+		
+		<div class="col-md-3">
+		</div>
+	</div>
+</div>
+
+	
 </body>
 </html>

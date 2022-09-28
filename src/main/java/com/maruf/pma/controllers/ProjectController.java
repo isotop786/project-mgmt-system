@@ -34,9 +34,6 @@ public class ProjectController {
 	public String saveProject(Project project, Model model, RedirectAttributes reAttr)
 	{
 		projectRepo.save(project); 
-		
-//		reAttr.addFlashAttribute("project", project);
-		//reAttr("project", project);
 				
 		// use a redirect to prevent duplicate submission
 		return "redirect:";
@@ -45,9 +42,11 @@ public class ProjectController {
 	@GetMapping("")
 	public String getAllProjcet(Model model)
 	{
-		model.addAttribute("projects",projectRepo.findAll());
+		List<Project> projects = projectRepo.findAll();
 		
-		return "main/home";
+		model.addAttribute("projects",projects);
+		
+		return "project/all";
 	}
 	
 	
