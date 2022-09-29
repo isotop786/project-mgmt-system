@@ -1,29 +1,36 @@
 package com.maruf.pma.entities;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 
 @Entity
-@Table(name="employee")
 public class Employee {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long employeeId;
 	
-	@Column(nullable = false)
 	private String firstName;
 	
-	@Column(nullable = false)
 	private String lastName;
 	
 	@Column(unique=true, nullable = false)
 	private String email;
+	
+	@ManyToOne(cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST},
+			fetch = FetchType.LAZY
+			) 
+	@JoinColumn(name="project_id")
+	private Project project;
 	
 	public Employee()
 	{ 
@@ -59,7 +66,18 @@ public class Employee {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	
+
+	public Project getProject() {
+		return project;
+	}
+
+	public void setProject(Project project) {
+		this.project = project;
+	}
+
+	public long getEmployeeId() {
+		return employeeId;
+	}
 	
 	
 

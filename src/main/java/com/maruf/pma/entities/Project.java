@@ -1,9 +1,12 @@
 package com.maruf.pma.entities;
 
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Project {
@@ -16,6 +19,9 @@ public class Project {
 	private String stage;
 	
 	private String description;
+	
+	@OneToMany(mappedBy ="project")
+	private List<Employee> employee;
 	
 	public Project() {}
 	
@@ -44,6 +50,20 @@ public class Project {
 	public void setDescription(String description) {
 		this.description = description;
 	}
+
+	public List<Employee> getEmployee() {
+		return employee;
+	}
+
+	public void setEmployee(List<Employee> employee) {
+		this.employee = employee;
+	}
+
+	public long getProjectId() {
+		return projectId;
+	}
+	
+	
 	
 	
 }

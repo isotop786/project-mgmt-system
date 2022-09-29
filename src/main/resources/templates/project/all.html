@@ -22,16 +22,25 @@
 			<a class="btn btn-sm btn-primary" href="/projects/new">Add New Project</a>
 		</div>
 			<table class="table table-striped">
-		<tr>
-			<td>Project Name</td>
-			<td>Project Stage</td>
-			<td>Project Description</td>
-		</tr>	
+		<thead class="thead-dark">
+			<tr>
+			<th>Project Name</th>
+			<th>Project Stage</th>
+			<th>Project Description</th>
+			<th>Employee(s)</th>
+			</tr>
+		</thead>	
 		
 		<tr th:each="project : ${projects}">
 			<td th:text="${project.name}"/>
 			<td th:text="${project.stage}"/>
 			<td th:text="${project.description}"/>
+			<td>
+				<span th:each="emp : ${project.employee}">
+					<strong th:text="${emp.firstName}"></strong>
+				</span>
+			</td>
+			<!-- -<td th:text="${project.employee}"/> -->
 		</tr>
 			
 	</table>
