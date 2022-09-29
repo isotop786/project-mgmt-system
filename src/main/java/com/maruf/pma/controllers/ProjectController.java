@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -39,23 +40,31 @@ public class ProjectController {
 		return "project/new-project";
 	} 
 	
-	@RequestMapping(value ="save", method = RequestMethod.POST)
-	public String saveProject(Project project, Model model, RedirectAttributes reAttr, @RequestParam List<Long> employee)
+//	@RequestMapping(value ="save", method = RequestMethod.POST)
+//	public String saveProject(Project project, Model model, RedirectAttributes reAttr, @RequestParam List<Long> employee)
+//	{
+//		//System.out.println("Employees are: "+employee);
+//		projectRepo.save(project);
+//		
+////		Iterable<Employee> selectedEmployees = empReop.findAllById(employee);
+////		
+////		for(Employee emp: selectedEmployees) {
+////			emp.setProject(project);
+////			empReop.save(emp);
+////		}
+//			
+//		
+//		
+//				
+//		// use a redirect to prevent duplicate submission
+//		return "redirect:";
+//	}
+//	
+	@PostMapping("save")
+	public String createProejct(Project project, Model model)
 	{
-		//System.out.println("Employees are: "+employee);
 		projectRepo.save(project);
 		
-		Iterable<Employee> selectedEmployees = empReop.findAllById(employee);
-		
-		for(Employee emp: selectedEmployees) {
-			emp.setProject(project);
-			empReop.save(emp);
-		}
-			
-		
-		
-				
-		// use a redirect to prevent duplicate submission
 		return "redirect:";
 	}
 	

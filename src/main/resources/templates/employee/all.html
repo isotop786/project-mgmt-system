@@ -25,6 +25,7 @@
 							<th>First Name</th>
 							<th>Last Name</th>
 							<th>Email</th>
+							<th>Projects</th>
 						</tr>
 					</thead>
 
@@ -33,6 +34,11 @@
 							<td th:text="${emp.firstName}"></td>
 							<td th:text="${emp.lastName}"></td>
 							<td th:text="${emp.email}"></td>
+							<td>
+								<span th:each="p :${emp.projects}">
+								<strong th:text="${p.name}"></strong>
+								</span>
+							</td>
 						</tr>
 					</tbody>
 

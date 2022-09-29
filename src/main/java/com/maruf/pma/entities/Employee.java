@@ -1,5 +1,7 @@
 package com.maruf.pma.entities;
 
+import java.util.List;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -8,8 +10,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 
 
 @Entity
@@ -26,11 +28,15 @@ public class Employee {
 	@Column(unique=true, nullable = false)
 	private String email;
 	
-	@ManyToOne(cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST},
+	@ManyToMany(cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST},
 			fetch = FetchType.LAZY
 			) 
-	@JoinColumn(name="project_id")
-	private Project project;
+	@JoinTable(name = "project_employee",
+			joinColumns = @JoinColumn(name="employee_id"),
+			inverseJoinColumns = @JoinColumn(name="project_id")
+			)
+//	@JoinColumn(name="project_id") 
+	private List<Project> projects;
 	
 	public Employee()
 	{ 
@@ -67,17 +73,20 @@ public class Employee {
 		this.email = email;
 	}
 
-	public Project getProject() {
-		return project;
-	}
-
-	public void setProject(Project project) {
-		this.project = project;
-	}
 
 	public long getEmployeeId() {
 		return employeeId;
 	}
+
+	public List<Project> getProjects() {
+		return projects;
+	}
+
+	public void setProjects(List<Project> projects) {
+		this.projects = projects;
+	}
+
+	
 	
 	
 
